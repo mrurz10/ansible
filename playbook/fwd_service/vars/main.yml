@@ -1,0 +1,5 @@
+---
+# vars file for fwd_service
+#
+
+service_name: http

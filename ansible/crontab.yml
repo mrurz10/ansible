@@ -1,0 +1,28 @@
+---
+- name: installing and configure crontab and job
+  hosts: all
+  become: true
+
+  tasks:
+  - name: installing crontab
+    yum:
+      name: cronie
+      state: present
+
+  - name: start crontab
+    systemd:
+      name: crond
+      state: started
+      enabled: yes
+
+  - name: add cron job
+    cron: 
+     name: run test script
+     minute: 30
+     hour: 18
+     day: 15
+     month: "*"
+     weekday: "*"
+     user: raheel
+     job: /home/ec2-user/ansible/test.sh
+

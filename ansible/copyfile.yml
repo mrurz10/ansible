@@ -1,0 +1,14 @@
+---
+- name: copying file to remote
+  hosts: all
+  become: true
+
+  tasks:
+  - name: copy files
+    copy:
+      src: /home/ec2-user/ansible/files
+      dest: /tmp/
+      owner: raheel
+      group: raheel
+      mode: 0777
+      backup: true

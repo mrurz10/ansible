@@ -1,0 +1,14 @@
+---
+- name: download files
+  hosts: all
+  become: true
+
+  tasks:
+  - name: download file
+    get_url:
+      url: https://dlcdn.apache.org/maven/maven-3/3.9.9/source/apache-maven-3.9.9-src.tar.gz
+      dest: /tmp/
+      owner: raheel
+      group: raheel
+      mode: 0777
+

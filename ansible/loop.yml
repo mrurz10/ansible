@@ -1,0 +1,14 @@
+---
+- name: installing packages
+  hosts: all
+  become: true
+  vars:
+    - apps: [yum,httpd,vim,telnet]
+
+  tasks:
+  - name: installing package
+    yum:
+      name: "{{ item }}"
+      state: present
+    tags: i-nginx
+    loop: "{{ apps }}"

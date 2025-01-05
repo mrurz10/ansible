@@ -1,0 +1,23 @@
+---
+# tasks file for http_setup
+
+
+- name: installing httpd 
+  yum:
+    name: "{{ httpd_package_name }}"
+    state: present
+  become: true
+
+- name: place custom html file 
+  copy:
+    src: index.html
+    dest: "{{ html_file_path }}"
+  become: true
+
+- name: start the http service
+  systemd:
+    name: "{{ httpd_package_name }}"
+    state: started
+    enabled: yes
+  become: true
+
